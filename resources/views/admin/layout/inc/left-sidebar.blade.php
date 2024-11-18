@@ -1,8 +1,8 @@
 <div class="left-side-bar">
     <div class="brand-logo">
         <a href="index.html">
-            <img back/src="back/vendors/images/deskapp-logo.svg" alt="" class="dark-logo" />
-            <img back/src="back/vendors/images/deskapp-logo-white.svg" alt="" class="light-logo" />
+            <img src="back/vendors/images/deskapp-logo.svg" alt="" class="dark-logo" />
+            <img src="back/vendors/images/deskapp-logo-white.svg" alt="" class="light-logo" />
         </a>
         <div class="close-sidebar" data-toggle="left-sidebar-close">
             <i class="ion-close-round"></i>
@@ -201,12 +201,10 @@
                         class="dropdown-toggle no-arrow">
                         <span class="micon bi bi-layout-text-window-reverse"></span>
                         <span class="mtext">Landing Page
-                            <img back/src="back/vendors/images/coming-soon.png" alt=""
-                                width="25" /></span>
+                            <img src="back/vendors/images/coming-soon.png" alt="" width="25" /></span>
                     </a>
                 </li>
             </ul>
         </div>
     </div>
 </div>
-<div class="mobile-menu-overlay"></div>

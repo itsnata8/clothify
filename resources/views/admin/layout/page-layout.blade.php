@@ -27,9 +27,9 @@
 </head>
 
 <body>
-    @extends('admin.layout.inc.header')
-    @extends('admin.layout.inc.right-sidebar')
-    @extends('admin.layout.inc.left-sidebar')
+    @include('admin.layout.inc.header')
+    @include('admin.layout.inc.right-sidebar')
+    @include('admin.layout.inc.left-sidebar')
     <div class="main-container">
         @yield('content')
     </div>
