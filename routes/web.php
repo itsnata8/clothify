@@ -25,6 +25,11 @@ Route::view('/reset-password', 'admin.reset-password');
 Route::view('/verify-email', 'admin.verify-email');
 Route::view('/email-verified', 'admin.email-verified');
 
+// admin
 Route::view('/dashboard', 'admin.dashboard');
 Route::view('/profile', 'admin.profile');
 Route::view('/products', 'admin.products');
+
+// test route
+Route::view('/example-auth', 'example-auth');
+Route::view('/example-page', 'example-page');
