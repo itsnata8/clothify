@@ -33,3 +33,4 @@ Route::view('/products', 'admin.products');
 // test route
 Route::view('/example-auth', 'example-auth');
 Route::view('/example-page', 'example-page');
+Route::view('/example-home', 'example-home');
