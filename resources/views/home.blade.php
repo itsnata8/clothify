@@ -181,7 +181,7 @@
 
         @include('inc.blog')
 
-        @include('logo-bar')
+        @include('inc.logo-bar')
 
         @include('inc.newsletter')
 

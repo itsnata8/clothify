@@ -29,12 +29,16 @@
         <div class="container-fluid d-flex justify-content-between align-items-center">
             <div class="brand-logo">
                 <a href="login.html">
-                    <img src="back/vendors/images/deskapp-logo.svg" alt="" />
+                    <img src="/images/default-logo.svg" alt="" />
                 </a>
             </div>
             <div class="login-menu">
                 <ul>
-                    <li><a href="register.html">Register</a></li>
+                    @if (Route::is('login'))
+                        <li><a href="{{ route('register') }}">Register</a></li>
+                    @else
+                        <li><a href="{{ route('login') }}">Login</a></li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -42,9 +46,7 @@
     <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-md-6 col-lg-7">
-                    <img src="back/vendors/images/login-page-img.png" alt="">
-                </div>
+
                 @yield('content')
             </div>
         </div>

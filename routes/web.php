@@ -16,14 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::view('/', 'home');
-Route::view('/login', 'admin.login');
-Route::view('/register', 'admin.register');
-Route::view('/forgot-password', 'admin.forgot-password');
-Route::view('/reset-password', 'admin.reset-password');
-Route::view('/verify-email', 'admin.verify-email');
-Route::view('/email-verified', 'admin.email-verified');
+Route::view('/login', 'auth.login')->name('login');
+Route::view('/register', 'auth.register')->name('register');
+Route::view('/forgot-password', 'auth.forgot-password');
+Route::view('/reset-password', 'auth.reset-password');
 
 // admin
 Route::view('/dashboard', 'admin.dashboard');
