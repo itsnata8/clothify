@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Route::view('/', 'home');
-Route::view('/login', 'auth.login')->name('login');
-Route::view('/register', 'auth.register')->name('register');
-Route::view('/forgot-password', 'auth.forgot-password');
-Route::view('/reset-password', 'auth.reset-password');
+
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/login', 'login')->name('login');
+    Route::post('/login', 'loginAction')->name('login.action');
+    Route::get('/register', 'register')->name('register');
+    Route::post('/register', 'registerAction')->name('register.action');
+    Route::get('/forgot-password', 'forgotPassword')->name('forgot-password');
+    Route::post('/forgot-password', 'forgotPasswordAction')->name('forgot-password.action');
+    Route::get('/reset-password', 'resetPassword')->name('reset-password');
+    Route::post('/reset-password', 'resetPasswordAction')->name('reset-password.action');
+});
 
 // admin
 Route::view('/dashboard', 'admin.dashboard');
