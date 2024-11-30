@@ -155,6 +155,10 @@
 
         <div class="preloader text-white fs-6 text-uppercase overflow-hidden"></div>
 
+        @if (Session::get('success'))
+            <div class="bg-primary text-white text-center">{{ Session::get('success') }}</div>
+        @endif
+
         @include('inc.search-popup')
 
         @include('inc.cart')

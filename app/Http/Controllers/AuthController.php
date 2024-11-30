@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -44,14 +49,25 @@ class AuthController extends Controller
             'password' => $request->password,
         );
         $remember = $request->remember_me == 'on' ? true : false;
+
+        $isVerified = DB::table('users')
+            ->where('email', $request->login_id)
+            ->where('email_verified_at', '!=', null)
+            ->first();
+
         if (Auth::attempt($creds, $remember)) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            if ($isVerified != null) {
+                return redirect()->intended('/dashboard');
+            } else {
+                return redirect()->route('verification.notice');
+            }
+        } else {
+            return redirect()->back()->with(
+                'fail',
+                'The provided credentials do not match our records.',
+            );
         }
-        return redirect()->back()->with(
-            'fail',
-            'The provided credentials do not match our records.',
-        );
     }
     public function register()
     {
@@ -93,9 +109,88 @@ class AuthController extends Controller
             'address' => $request->address,
         ];
 
-        if (User::create($newUser)) {
-            return redirect()->route('login')->with('success', 'Registration successful');
+
+        $user = User::create($newUser);
+
+
+        if ($user) {
+            event(new Registered($user));
+
+            Auth::login($user);
+            return redirect()->route('verification.notice');
         }
         return redirect()->back()->with('fail', 'Registration failed');
+    }
+    public function forgotPassword()
+    {
+        $data = [
+            'pageTitle' => 'Forgot Password',
+        ];
+
+        return view('auth.forgot-password', $data);
+    }
+    public function forgotPasswordAction(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+        $status = Password::sendResetLink($request->only('email'));
+
+        return $status === Password::RESET_LINK_SENT
+            ? back()->with('success', __($status))
+            : back()->with('fail', __($status));
+    }
+    public function resetPassword($token)
+    {
+        $data = [
+            'pageTitle' => 'Reset Password',
+        ];
+
+        return view('auth.reset-password', ['token' => $token, 'email' => $_GET['email']], $data);
+    }
+
+    public function resetPasswordAction(Request $request)
+    {
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8|confirmed'
+        ]);
+
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function (User $user, string $password) {
+                $user->forceFill([
+                    'password' => Hash::make($password)
+                ])->setRememberToken(Str::random(60));
+
+                $user->save();
+
+                event(new PasswordReset($user));
+            }
+        );
+        return $status === Password::PASSWORD_RESET
+            ?  redirect()->route('login')->with('success', __($status))
+            : back()->with('fail', __($status));
+    }
+
+    public function getEmailVerify()
+    {
+        $data = [
+            'pageTitle' => 'Email Verification',
+        ];
+        return view('auth.email-verify', $data);
+    }
+
+    public function verifyEmail(EmailVerificationRequest $request)
+    {
+        $request->fulfill();
+
+        return redirect()->route('home')->with('success', 'Your email has been successfully verified!');
+    }
+
+    public function sendVerificationEmail(Request $request)
+    {
+        $request->user()->sendEmailVerificationNotification();
+
+        return back()->with('success', 'Verification email sent!');
     }
 }
