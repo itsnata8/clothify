@@ -173,7 +173,6 @@
 
         @include('inc.new-arrival')
 
-        @include('inc.collection')
 
         @include('inc.best-seller')
 

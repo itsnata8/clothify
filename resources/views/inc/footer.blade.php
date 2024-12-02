@@ -4,13 +4,12 @@
             <div class="col-md-3 col-sm-6">
                 <div class="footer-menu footer-menu-001">
                     <div class="footer-intro mb-4">
-                        <a href="index.html">
-                            <img src="front/images/main-logo.png" alt="logo">
+                        <a href="{{ route('home') }}">
+                            <img src="{{ asset('/images/admin/default-logo.svg') }}" alt="logo brand">
                         </a>
                     </div>
-                    <p>Gravida massa volutpat aenean odio. Amet, turpis erat nullam fringilla elementum diam in.
-                        Nisi, purus
-                        vitae, ultrices nunc. Sit ac sit suscipit hendrerit.</p>
+                    <p>Elevating style and comfort with every piece. Crafted with care, designed to inspire, and made to
+                        stand out.</p>
                     <div class="social-links">
                         <ul class="list-unstyled d-flex flex-wrap gap-3">
                             <li>
@@ -60,41 +59,13 @@
                             <a href="index.html" class="item-anchor">Home</a>
                         </li>
                         <li class="menu-item">
-                            <a href="index.html" class="item-anchor">About</a>
+                            <a href="index.html" class="item-anchor">Shop</a>
                         </li>
                         <li class="menu-item">
-                            <a href="blog.html" class="item-anchor">Services</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="styles.html" class="item-anchor">Single item</a>
+                            <a href="styles.html" class="item-anchor">Blog</a>
                         </li>
                         <li class="menu-item">
                             <a href="#" class="item-anchor">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="footer-menu footer-menu-003">
-                    <h5 class="widget-title text-uppercase mb-4">Help & Info</h5>
-                    <ul class="menu-list list-unstyled text-uppercase border-animation-left fs-6">
-                        <li class="menu-item">
-                            <a href="#" class="item-anchor">Track Your Order</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="item-anchor">Returns + Exchanges</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="item-anchor">Shipping + Delivery</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="item-anchor">Contact Us</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="item-anchor">Find us easy</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="index.html" class="item-anchor">Faqs</a>
                         </li>
                     </ul>
                 </div>

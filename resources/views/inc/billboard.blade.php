@@ -3,11 +3,9 @@
         <div class="row justify-content-center">
             <h1 class="section-title text-center mt-4" data-aos="fade-up">New Collections</h1>
             <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="300">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe voluptas ut dolorum consequuntur,
-                    adipisci
-                    repellat! Eveniet commodi voluptatem voluptate, eum minima, in suscipit explicabo voluptatibus
-                    harum,
-                    quibusdam ex repellat eaque!</p>
+                <p>Discover the latest trends handpicked just for you. Our new arrivals combine elegance, comfort, and
+                    timeless style. Redefine your wardrobe with exclusive pieces that make every moment unforgettable.
+                </p>
             </div>
         </div>
         <div class="row">
